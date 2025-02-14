@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Générateur de Texte</title>
+   <link rel="stylesheet" href="/Users/macbook/Library/CloudStorage/OneDrive-Personnel/Documents/Automatisation\ génération\ texte\ IA/styles/main.css">
+</head>
+<body>
+   <div class="container">
+       <h1>Générateur de Texte</h1>
+       
+       <!-- Formulaire principal -->
+       <form id="generationForm" name="generationForm">
+           <!-- Type de page -->
+           <div class="form-group">
+               <label for="pageType">Type de page</label>
+               <select id="pageType" name="pageType" required>
+                   <option value="">Sélectionnez un type de page</option>
+                   <option value="1">Type d'hébergement</option>
+                   <option value="2">Thématique de séjour</option>
+                   <option value="3">Week-end + Destination</option>
+                   <option value="4">Destination</option>
+               </select>
+           </div>
+
+           <!-- Type spécifique (hébergement/séjour) -->
+           <div class="form-group" id="specificTypeGroup" style="display: none;">
+               <label for="specificType">Type spécifique</label>
+               <select id="specificType" name="specificType" required>
+                   <option value="">Chargement...</option>
+               </select>
+           </div>
+
+           <!-- Échelle géographique -->
+           <div class="form-group">
+               <label for="geoScale">Échelle géographique</label>
+               <select id="geoScale" name="geoScale" required>
+                   <option value="">Sélectionnez une échelle</option>
+                   <option value="region">Région</option>
+                   <option value="departement">Département</option>
+                   <option value="ville">Ville</option>
+               </select>
+           </div>
+
+           <!-- Destination -->
+           <div class="form-group">
+               <label for="destination">Destination</label>
+               <div id="destinationContainer">
+                   <select id="destination" required>
+                       <option value="">Sélectionnez d'abord une échelle géographique</option>
+                   </select>
+                   <input type="text" id="villeInput" placeholder="Entrez le nom de la ville" style="display: none;">
+               </div>
+           </div>
+
+           <!-- Requête SEO -->
+           <div class="form-group">
+               <label for="seoQuery">Requête SEO</label>
+               <input type="text" id="seoQuery" name="seoQuery" required maxlength="150">
+               <span id="charCount">0/150</span>
+           </div>
+
+           <button type="submit">Générer le texte</button>
+       </form>
+
+       <!-- Zone de résultat -->
+       <div id="result" class="result-area" style="display: none;">
+           <h2>Texte généré</h2>
+           <div id="generatedText"></div>
+       </div>
+   </div>
+
+   <!-- Scripts -->
+   <script type="module" src="/Users/macbook/Library/CloudStorage/OneDrive-Personnel/Documents/Automatisation\ génération\ texte\ IA/scripts/main.js"></script>
+</body>
+</html>

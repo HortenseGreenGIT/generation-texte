@@ -1,0 +1,125 @@
+/* Variables et reset */
+:root {
+    --primary-color: #4CAF50;
+    --error-color: #f44336;
+    --text-color: #333;
+    --border-color: #ddd;
+    --hover-color: #45a049;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+/* Style des formulaires */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(76,175,80,0.2);
+}
+
+/* Bouton */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+/* Compteur de caractères */
+#charCount {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Zone de résultat */
+.result-area {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.result-area h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#generatedText {
+    white-space: pre-wrap;
+    line-height: 1.8;
+}
+
+/* Messages d'erreur */
+.error {
+    color: var(--error-color);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    button {
+        padding: 10px 15px;
+    }
+}
