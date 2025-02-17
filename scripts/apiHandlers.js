@@ -38,19 +38,21 @@ class GPTAPI {
 - La requête SEO '${formData.seoQuery}' doit apparaître 10 fois\n\n`;
 
         let specificPrompt = '';
-        switch(parseInt(formData.pageType)) {
-            case PAGE_TYPES.HEBERGEMENT:
-                specificPrompt = this.getHebergementPrompt(formData);
-                break;
-            case PAGE_TYPES.SEJOUR:
-                specificPrompt = this.getSejourPrompt(formData);
-                break;
-            case PAGE_TYPES.WEEKEND:
-                specificPrompt = this.getWeekendPrompt(formData);
-                break;
-            case PAGE_TYPES.DESTINATION:
-                specificPrompt = this.getDestinationPrompt(formData);
-                break;
+    switch(parseInt(formData.pageType)) {
+        case PAGE_TYPES.HEBERGEMENT:
+            specificPrompt = this.getHebergementPrompt(formData);
+            break;
+        case PAGE_TYPES.SEJOUR:
+            specificPrompt = this.getSejourPrompt(formData);
+            break;
+        case PAGE_TYPES.WEEKEND:
+            specificPrompt = this.getWeekendPrompt(formData);
+            break;
+        case PAGE_TYPES.DESTINATION:
+            specificPrompt = this.getDestinationPrompt(formData);
+            break;
+        default:
+            console.error('Type de page non reconnu:', formData.pageType);
         }
 
         return basePrompt + specificPrompt;

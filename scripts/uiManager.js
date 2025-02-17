@@ -98,12 +98,12 @@ class UIManager {
         this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
 
         const formData = {
-            pageType: this.pageTypeSelect.value,
-            specificType: this.specificTypeSelect.value,
-            geoScale: this.geoScaleSelect.value,
-            destination: this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value,
-            seoQuery: this.seoQueryInput.value
-        };
+              pageType: this.pageTypeSelect.value,
+              specificType: this.specificTypeSelect.selectedOptions[0]?.text || '', // Utilise le texte du type au lieu de l'ID
+              geoScale: this.geoScaleSelect.value,
+              destination: this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value,
+              seoQuery: this.seoQueryInput.value
+            };
 
         console.log("Données du formulaire :", formData); // ✅ Vérification
 
