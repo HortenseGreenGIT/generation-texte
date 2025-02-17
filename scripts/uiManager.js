@@ -1,6 +1,6 @@
 // uiManager.js
 import { GPTAPI } from './apiHandlers.js';
-import { LOCATIONS } from '/Users/macbook/Library/CloudStorage/OneDrive-Personnel/Documents/Automatisation génération texte IA/data/locations.js';
+import { LOCATIONS } from '../data/locations.js';
 import { PAGE_TYPES, HEBERGEMENT_TYPES, SEJOUR_TYPES, MAX_SEO_CHARS } from './constants.js';
 
 class UIManager {
