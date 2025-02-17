@@ -40,7 +40,7 @@ class GPTAPI {
 - Variez le vocabulaire et évitez les répétitions excessives (sauf pour la requête SEO dont la consigne est donnée ci-après)
 - Adaptez les conjonctions de coordination et les mots de liaison en fonction du contexte
 - Assurez une lecture agréable avec une structure logique et fluide
-- La requête SEO '${formData.seoQuery}' doit apparaître exactement 10 fois de manière naturelle, pas une fois de moins.\n\n`;
+- Intégrez la requête SEO '${formData.seoQuery}' exactement 10 fois (pas une fois de moins), **de manière fluide et contextuelle**, sans altérer la qualité du texte.\n\n`;
 
         let specificPrompt = '';
     switch(parseInt(formData.pageType)) {
