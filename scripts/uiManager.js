@@ -107,7 +107,7 @@ class UIManager {
 
            console.log('Données du formulaire:', formData); // Debug
 
-           const generatedText = await this.generateText(formData);
+           const generatedText = await GPTAPI.generateText(formData);
            this.showResult(generatedText);
        } catch (error) {
            console.error('Erreur lors de la génération:', error);

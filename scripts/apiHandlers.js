@@ -1,20 +1,13 @@
 // apiHandlers.js
 class GPTAPI {
-    static async generateText(prompt) {
+    static async generateText(formData) { // On passe maintenant tout l'objet formData
         try {
-            const response = await fetch(API_CONFIG.GPT_URL, {
+            const response = await fetch('https://desolate-chamber-02022-367a0f7be239.herokuapp.com/generate-text', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_CONFIG.GPT_KEY}`
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    model: API_CONFIG.GPT_MODEL,
-                    messages: [
-                        { role: "user", content: prompt }
-                    ],
-                    store: true
-                })
+                body: JSON.stringify(formData) // On envoie TOUT le formData et pas seulement le SEO Query
             });
 
             if (!response.ok) {
@@ -22,7 +15,7 @@ class GPTAPI {
             }
 
             const data = await response.json();
-            return data.choices[0].message.content;
+            return data.text;
         } catch (error) {
             console.error('Erreur lors de la génération du texte:', error);
             throw error;

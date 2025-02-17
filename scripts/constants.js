@@ -1,9 +1,3 @@
-// Configuration des APIs
-export const API_CONFIG = {
-    GPT_URL: 'https://api.openai.com/v1/chat/completions',
-    GPT_KEY: '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',
-    GPT_MODEL: 'gpt-4o-mini'
-};
 
 // Constantes de l'application
 export const MAX_SEO_CHARS = 150;
