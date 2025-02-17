@@ -35,7 +35,12 @@ class GPTAPI {
 - Écrivez des phrases courtes (15-20 mots maximum)
 - Adoptez un style direct et dynamique
 - Utilisez un ton chaleureux et accueillant
-- La requête SEO '${formData.seoQuery}' doit apparaître 10 fois\n\n`;
+- Rédigez de manière fluide et naturelle en respectant la grammaire et l'orthographe
+- Faites en sorte que le texte semble écrit par un humain en adaptant le rythme et la structure des phrases
+- Variez le vocabulaire et évitez les répétitions excessives (sauf pour la requête SEO dont la consigne est donnée ci-après)
+- Adaptez les conjonctions de coordination et les mots de liaison en fonction du contexte
+- Assurez une lecture agréable avec une structure logique et fluide
+- La requête SEO '${formData.seoQuery}' doit apparaître exactement 10 fois de manière naturelle, pas une fois de moins.\n\n`;
 
         let specificPrompt = '';
     switch(parseInt(formData.pageType)) {
