@@ -1,26 +1,29 @@
 // apiHandlers.js
 class GPTAPI {
-    static async generateText(formData) { // On passe maintenant tout l'objet formData
-        try {
-            const response = await fetch('https://desolate-chamber-02022-367a0f7be239.herokuapp.com/generate-text', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData) // On envoie TOUT le formData et pas seulement le SEO Query
-            });
+    static async generateText(prompt) {
+    try {
+        console.log("Prompt envoyé au backend :", prompt); // ✅ Vérifie si le prompt est bien envoyé
 
-            if (!response.ok) {
-                throw new Error(`Erreur HTTP: ${response.status}`);
-            }
+        const response = await fetch('https://desolate-chamber-02022-367a0f7be239.herokuapp.com/generate-text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ prompt }) // On envoie le prompt ici
+        });
 
-            const data = await response.json();
-            return data.text;
-        } catch (error) {
-            console.error('Erreur lors de la génération du texte:', error);
-            throw error;
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
         }
+
+        const data = await response.json();
+        return data.text;
+    } catch (error) {
+        console.error('Erreur lors de la génération du texte:', error);
+        throw error;
     }
+}
+
 
     static generatePrompt(formData) {
         const basePrompt = `Générez un texte de 800 mots en français avec les caractéristiques suivantes :

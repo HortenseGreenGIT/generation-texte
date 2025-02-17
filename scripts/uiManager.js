@@ -91,31 +91,35 @@ class UIManager {
    }
 
    async handleSubmit(e) {
-       e.preventDefault();
-       console.log('Soumission du formulaire'); // Debug
+    e.preventDefault();
+    console.log('Soumission du formulaire'); // ✅ Debug
 
-       try {
-           this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+    try {
+        this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
 
-           const formData = {
-               pageType: this.pageTypeSelect.value,
-               specificType: this.specificTypeSelect.value,
-               geoScale: this.geoScaleSelect.value,
-               destination: this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value,
-               seoQuery: this.seoQueryInput.value
-           };
+        const formData = {
+            pageType: this.pageTypeSelect.value,
+            specificType: this.specificTypeSelect.value,
+            geoScale: this.geoScaleSelect.value,
+            destination: this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value,
+            seoQuery: this.seoQueryInput.value
+        };
 
-           console.log('Données du formulaire:', formData); // Debug
+        console.log("Données du formulaire :", formData); // ✅ Vérification
 
-           const generatedText = await GPTAPI.generateText(formData);
-           this.showResult(generatedText);
-       } catch (error) {
-           console.error('Erreur lors de la génération:', error);
-           this.showError('Erreur lors de la génération du texte');
-       } finally {
-           this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = false);
-       }
-   }
+        const prompt = GPTAPI.generatePrompt(formData);
+        console.log("Prompt généré :", prompt); // ✅ Vérification si un texte est bien construit
+
+        const generatedText = await GPTAPI.generateText(prompt);
+        this.showResult(generatedText);
+    } catch (error) {
+        console.error('Erreur lors de la génération:', error);
+        this.showError('Erreur lors de la génération du texte');
+    } finally {
+        this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = false);
+    }
+}
+
 
    async generateText(formData) {
        console.log('Génération du texte'); // Debug
