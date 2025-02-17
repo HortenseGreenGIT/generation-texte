@@ -1,4 +1,8 @@
 // apiHandlers.js
+
+import { PAGE_TYPES } from './constants.js';
+
+
 class GPTAPI {
     static async generateText(prompt) {
     try {
