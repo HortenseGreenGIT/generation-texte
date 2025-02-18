@@ -10,8 +10,11 @@ class UIManager {
        this.pageTypeSelect = document.getElementById('pageType');
        this.specificTypeGroup = document.getElementById('specificTypeGroup');
        this.specificTypeSelect = document.getElementById('specificType');
+       this.specificThematiqueGroup = document.getElementById('specificThematiqueGroup');
        this.specificThematiqueSelect = document.getElementById('specificThematique');
+       this.geoScaleGroup = document.getElementById('geoScale').parentElement;
        this.geoScaleSelect = document.getElementById('geoScale');
+       this.destinationGroup = document.getElementById('destination').parentElement;
        this.destinationSelect = document.getElementById('destination');
        this.villeInput = document.getElementById('villeInput');
        this.seoQueryInput = document.getElementById('seoQuery');
@@ -31,64 +34,68 @@ class UIManager {
    }
 
    handlePageTypeChange() {
-    const selectedType = parseInt(this.pageTypeSelect.value);
+       const selectedType = parseInt(this.pageTypeSelect.value);
 
-    // Masquer tous les champs par défaut
-    this.specificTypeGroup.style.display = 'none';
-    this.specificThematiqueSelect.style.display = 'none';
-    this.destinationSelect.style.display = 'none';
-    this.villeInput.style.display = 'none';
+       // Masquer tous les champs par défaut
+       this.specificTypeGroup.style.display = 'none';
+       this.specificThematiqueGroup.style.display = 'none';
+       this.geoScaleGroup.style.display = 'none';
+       this.destinationGroup.style.display = 'none';
+       this.villeInput.style.display = 'none';
 
-    // Afficher les bons champs en fonction du type sélectionné
-    switch (selectedType) {
-        case PAGE_TYPES.TYPE_SEUL:
-            this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-            break;
+       // Afficher les bons champs en fonction du type sélectionné
+       switch (selectedType) {
+           case PAGE_TYPES.TYPE_SEUL:
+               this.specificTypeGroup.style.display = 'block';
+               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+               break;
 
-        case PAGE_TYPES.TYPE_DESTINATION:
-            this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-            this.destinationSelect.style.display = 'block';
-            break;
+           case PAGE_TYPES.TYPE_DESTINATION:
+               this.specificTypeGroup.style.display = 'block';
+               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+               this.geoScaleGroup.style.display = 'block';
+               this.destinationGroup.style.display = 'block';
+               break;
 
-        case PAGE_TYPES.TYPE_THEMATIQUE:
-            this.specificTypeGroup.style.display = 'block';
-            this.specificThematiqueSelect.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            break;
+           case PAGE_TYPES.TYPE_THEMATIQUE:
+               this.specificTypeGroup.style.display = 'block';
+               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+               this.specificThematiqueGroup.style.display = 'block';
+               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+               break;
 
-        case PAGE_TYPES.THEMATIQUE_SEUL:
-            this.specificThematiqueSelect.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            break;
+           case PAGE_TYPES.THEMATIQUE_SEUL:
+               this.specificThematiqueGroup.style.display = 'block';
+               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+               break;
 
-        case PAGE_TYPES.THEMATIQUE_DESTINATION:
-            this.specificThematiqueSelect.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            this.destinationSelect.style.display = 'block';
-            break;
+           case PAGE_TYPES.THEMATIQUE_DESTINATION:
+               this.specificThematiqueGroup.style.display = 'block';
+               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+               this.geoScaleGroup.style.display = 'block';
+               this.destinationGroup.style.display = 'block';
+               break;
 
-        case PAGE_TYPES.WEEKEND_THEMATIQUE:
-            this.specificThematiqueSelect.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            break;
+           case PAGE_TYPES.WEEKEND_THEMATIQUE:
+               this.specificThematiqueGroup.style.display = 'block';
+               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+               break;
 
-        case PAGE_TYPES.WEEKEND_DESTINATION:
-            this.destinationSelect.style.display = 'block';
-            break;
+           case PAGE_TYPES.WEEKEND_DESTINATION:
+               this.geoScaleGroup.style.display = 'block';
+               this.destinationGroup.style.display = 'block';
+               break;
 
-        case PAGE_TYPES.DESTINATION_SEULE:
-            this.destinationSelect.style.display = 'block';
-            break;
+           case PAGE_TYPES.DESTINATION_SEULE:
+               this.geoScaleGroup.style.display = 'block';
+               this.destinationGroup.style.display = 'block';
+               break;
 
-        default:
-            break;
-    }
-}
-
-
+           default:
+               console.warn("Type de page inconnu :", selectedType);
+               break;
+       }
+   }
 
    handleGeoScaleChange() {
        console.log('Changement d\'échelle géographique'); // Debug
@@ -96,21 +103,18 @@ class UIManager {
        console.log('Échelle sélectionnée:', selectedScale); // Debug
 
        if (selectedScale === 'ville') {
-           console.log('Mode ville activé'); // Debug
-           this.destinationSelect.style.display = 'none';
+           this.destinationGroup.style.display = 'none';
            this.villeInput.style.display = 'block';
            this.villeInput.required = true;
            this.destinationSelect.required = false;
        } else {
-           console.log('Mode région/département activé'); // Debug
-           this.destinationSelect.style.display = 'block';
+           this.destinationGroup.style.display = 'block';
            this.villeInput.style.display = 'none';
            this.villeInput.required = false;
            this.destinationSelect.required = true;
 
            this.destinationSelect.innerHTML = '<option value="">Sélectionnez une destination</option>';
            const locations = selectedScale === 'region' ? LOCATIONS.regions : LOCATIONS.departements;
-           console.log('Locations chargées:', locations); // Debug
 
            locations.forEach(location => {
                const option = document.createElement('option');
@@ -122,14 +126,14 @@ class UIManager {
    }
 
    loadSpecificTypes(types, selectElement) {
-    selectElement.innerHTML = '<option value="">Sélectionnez une option</option>';
-    types.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type.id;
-        option.textContent = type.name;
-        selectElement.appendChild(option);
-    });
-}
+       selectElement.innerHTML = '<option value="">Sélectionnez une option</option>';
+       types.forEach(type => {
+           const option = document.createElement('option');
+           option.value = type.id;
+           option.textContent = type.name;
+           selectElement.appendChild(option);
+       });
+   }
 
    updateCharCount() {
        const count = this.seoQueryInput.value.length;
@@ -153,30 +157,30 @@ class UIManager {
         // Ajouter dynamiquement les champs nécessaires selon le type de page
         switch (selectedType) {
             case PAGE_TYPES.TYPE_SEUL:
-                formData.specificType = this.specificTypeSelect.value;
+                formData.specificType = this.specificTypeSelect.selectedOptions[0]?.text || ''; 
                 break;
 
             case PAGE_TYPES.TYPE_DESTINATION:
-                formData.specificType = this.specificTypeSelect.value;
+                formData.specificType = this.specificTypeSelect.selectedOptions[0]?.text || ''; 
                 formData.destination = this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value;
                 break;
 
             case PAGE_TYPES.TYPE_THEMATIQUE:
-                formData.specificType = this.specificTypeSelect.value;
-                formData.thematique = this.specificTypeSelect.value;
+                formData.specificType = this.specificTypeSelect.selectedOptions[0]?.text || ''; 
+                formData.thematique = this.specificThematiqueSelect.selectedOptions[0]?.text || ''; 
                 break;
 
             case PAGE_TYPES.THEMATIQUE_SEUL:
-                formData.thematique = this.specificTypeSelect.value;
+                formData.thematique = this.specificThematiqueSelect.selectedOptions[0]?.text || ''; 
                 break;
 
             case PAGE_TYPES.THEMATIQUE_DESTINATION:
-                formData.thematique = this.specificTypeSelect.value;
+                formData.thematique = this.specificThematiqueSelect.selectedOptions[0]?.text || ''; 
                 formData.destination = this.geoScaleSelect.value === 'ville' ? this.villeInput.value : this.destinationSelect.value;
                 break;
 
             case PAGE_TYPES.WEEKEND_THEMATIQUE:
-                formData.thematique = this.specificTypeSelect.value;
+                formData.thematique = this.specificThematiqueSelect.selectedOptions[0]?.text || ''; 
                 break;
 
             case PAGE_TYPES.WEEKEND_DESTINATION:
@@ -203,27 +207,6 @@ class UIManager {
     }
 }
 
-
-
-   async generateText(formData) {
-       console.log('Génération du texte'); // Debug
-       const prompt = GPTAPI.generatePrompt(formData);
-       return await GPTAPI.generateText(prompt);
-   }
-
-   showResult(text) {
-       this.generatedText.textContent = text;
-       this.resultArea.style.display = 'block';
-       this.resultArea.scrollIntoView({ behavior: 'smooth' });
-   }
-
-   showError(message) {
-       alert(message);
-   }
-
-   showAlert(message, type = 'info') {
-       alert(message);
-   }
 }
 
 export default new UIManager();
