@@ -5,10 +5,14 @@ export const TIMEOUT_SECONDS = 120;
 
 // Types de pages
 export const PAGE_TYPES = {
-    HEBERGEMENT: 1,
-    SEJOUR: 2,
-    WEEKEND: 3,
-    DESTINATION: 4
+    TYPE_SEUL: 1,
+    TYPE_DESTINATION: 2,
+    TYPE_THEMATIQUE: 3,
+    THEMATIQUE_SEUL: 4,
+    THEMATIQUE_DESTINATION: 5,
+    WEEKEND_THEMATIQUE: 6,
+    WEEKEND_DESTINATION: 7,
+    DESTINATION_SEULE: 8
 };
 
 // Types d'hébergements
