@@ -10,6 +10,7 @@ class UIManager {
        this.pageTypeSelect = document.getElementById('pageType');
        this.specificTypeGroup = document.getElementById('specificTypeGroup');
        this.specificTypeSelect = document.getElementById('specificType');
+       this.specificThematiqueSelect = document.getElementById('specificThematique');
        this.geoScaleSelect = document.getElementById('geoScale');
        this.destinationSelect = document.getElementById('destination');
        this.villeInput = document.getElementById('villeInput');
@@ -34,6 +35,7 @@ class UIManager {
 
     // Masquer tous les champs par défaut
     this.specificTypeGroup.style.display = 'none';
+    this.specificThematiqueSelect.style.display = 'none';
     this.destinationSelect.style.display = 'none';
     this.villeInput.style.display = 'none';
 
@@ -41,36 +43,36 @@ class UIManager {
     switch (selectedType) {
         case PAGE_TYPES.TYPE_SEUL:
             this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES);
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
             break;
 
         case PAGE_TYPES.TYPE_DESTINATION:
             this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES);
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
             this.destinationSelect.style.display = 'block';
             break;
 
         case PAGE_TYPES.TYPE_THEMATIQUE:
             this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES);
-            this.specificTypeSelect.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES);
+            this.specificThematiqueSelect.style.display = 'block';
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
             break;
 
         case PAGE_TYPES.THEMATIQUE_SEUL:
-            this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES);
+            this.specificThematiqueSelect.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
             break;
 
         case PAGE_TYPES.THEMATIQUE_DESTINATION:
-            this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES);
+            this.specificThematiqueSelect.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
             this.destinationSelect.style.display = 'block';
             break;
 
         case PAGE_TYPES.WEEKEND_THEMATIQUE:
-            this.specificTypeGroup.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES);
+            this.specificThematiqueSelect.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
             break;
 
         case PAGE_TYPES.WEEKEND_DESTINATION:
@@ -85,6 +87,7 @@ class UIManager {
             break;
     }
 }
+
 
 
    handleGeoScaleChange() {
@@ -118,18 +121,15 @@ class UIManager {
        }
    }
 
-   loadSpecificTypes(pageType) {
-       console.log('Chargement des types spécifiques'); // Debug
-       const types = pageType === PAGE_TYPES.HEBERGEMENT ? HEBERGEMENT_TYPES : SEJOUR_TYPES;
-       
-       this.specificTypeSelect.innerHTML = '<option value="">Sélectionnez un type</option>';
-       types.forEach(type => {
-           const option = document.createElement('option');
-           option.value = type.id;
-           option.textContent = type.name;
-           this.specificTypeSelect.appendChild(option);
-       });
-   }
+   loadSpecificTypes(types, selectElement) {
+    selectElement.innerHTML = '<option value="">Sélectionnez une option</option>';
+    types.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type.id;
+        option.textContent = type.name;
+        selectElement.appendChild(option);
+    });
+}
 
    updateCharCount() {
        const count = this.seoQueryInput.value.length;
