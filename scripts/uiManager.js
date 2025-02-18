@@ -34,68 +34,77 @@ class UIManager {
    }
 
    handlePageTypeChange() {
-       const selectedType = parseInt(this.pageTypeSelect.value);
+    const selectedType = parseInt(this.pageTypeSelect.value);
 
-       // Masquer tous les champs par défaut
-       this.specificTypeGroup.style.display = 'none';
-       this.specificThematiqueGroup.style.display = 'none';
-       this.geoScaleGroup.style.display = 'none';
-       this.destinationGroup.style.display = 'none';
-       this.villeInput.style.display = 'none';
+    // Masquer tous les champs par défaut
+    this.specificTypeGroup.style.display = 'none';
+    this.specificThematiqueGroup.style.display = 'none';
+    this.geoScaleGroup.style.display = 'none';
+    this.destinationGroup.style.display = 'none';
+    this.villeInput.style.display = 'none';
 
-       // Afficher les bons champs en fonction du type sélectionné
-       switch (selectedType) {
-           case PAGE_TYPES.TYPE_SEUL:
-               this.specificTypeGroup.style.display = 'block';
-               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-               break;
+    // Réinitialiser le required des champs destination et ville
+    this.destinationSelect.required = false;
+    this.villeInput.required = false;
 
-           case PAGE_TYPES.TYPE_DESTINATION:
-               this.specificTypeGroup.style.display = 'block';
-               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-               this.geoScaleGroup.style.display = 'block';
-               this.destinationGroup.style.display = 'block';
-               break;
+    // Afficher les bons champs en fonction du type sélectionné
+    switch (selectedType) {
+        case PAGE_TYPES.TYPE_SEUL:
+            this.specificTypeGroup.style.display = 'block';
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+            break;
 
-           case PAGE_TYPES.TYPE_THEMATIQUE:
-               this.specificTypeGroup.style.display = 'block';
-               this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-               this.specificThematiqueGroup.style.display = 'block';
-               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-               break;
+        case PAGE_TYPES.TYPE_DESTINATION:
+            this.specificTypeGroup.style.display = 'block';
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+            this.geoScaleGroup.style.display = 'block';
+            this.destinationGroup.style.display = 'block';
+            this.destinationSelect.required = true;
+            break;
 
-           case PAGE_TYPES.THEMATIQUE_SEUL:
-               this.specificThematiqueGroup.style.display = 'block';
-               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-               break;
+        case PAGE_TYPES.TYPE_THEMATIQUE:
+            this.specificTypeGroup.style.display = 'block';
+            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+            this.specificThematiqueGroup.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+            break;
 
-           case PAGE_TYPES.THEMATIQUE_DESTINATION:
-               this.specificThematiqueGroup.style.display = 'block';
-               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-               this.geoScaleGroup.style.display = 'block';
-               this.destinationGroup.style.display = 'block';
-               break;
+        case PAGE_TYPES.THEMATIQUE_SEUL:
+            this.specificThematiqueGroup.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+            break;
 
-           case PAGE_TYPES.WEEKEND_THEMATIQUE:
-               this.specificThematiqueGroup.style.display = 'block';
-               this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-               break;
+        case PAGE_TYPES.THEMATIQUE_DESTINATION:
+            this.specificThematiqueGroup.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+            this.geoScaleGroup.style.display = 'block';
+            this.destinationGroup.style.display = 'block';
+            this.destinationSelect.required = true;
+            break;
 
-           case PAGE_TYPES.WEEKEND_DESTINATION:
-               this.geoScaleGroup.style.display = 'block';
-               this.destinationGroup.style.display = 'block';
-               break;
+        case PAGE_TYPES.WEEKEND_THEMATIQUE:
+            this.specificThematiqueGroup.style.display = 'block';
+            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+            break;
 
-           case PAGE_TYPES.DESTINATION_SEULE:
-               this.geoScaleGroup.style.display = 'block';
-               this.destinationGroup.style.display = 'block';
-               break;
+        case PAGE_TYPES.WEEKEND_DESTINATION:
+            this.geoScaleGroup.style.display = 'block';
+            this.destinationGroup.style.display = 'block';
+            this.destinationSelect.required = true;
+            break;
 
-           default:
-               console.warn("Type de page inconnu :", selectedType);
-               break;
-       }
-   }
+        case PAGE_TYPES.DESTINATION_SEULE:
+            this.geoScaleGroup.style.display = 'block';
+            this.destinationGroup.style.display = 'block';
+            this.destinationSelect.required = true;
+            break;
+
+        default:
+            console.warn("Type de page inconnu :", selectedType);
+            break;
+    }
+}
+
 
    handleGeoScaleChange() {
        console.log('Changement d\'échelle géographique'); // Debug
