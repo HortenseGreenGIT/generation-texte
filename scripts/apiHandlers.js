@@ -30,7 +30,7 @@ class GPTAPI {
 
 
     static generatePrompt(formData) {
-        const basePrompt = `Générez un texte de 800 mots en français avec les caractéristiques suivantes :
+        const basePrompt = `Générez un texte de 800 à 1500 mots en français avec les caractéristiques suivantes :
 - Utilisez uniquement la voix active
 - Écrivez des phrases courtes (15-20 mots maximum)
 - Adoptez un style direct et dynamique
@@ -44,21 +44,34 @@ class GPTAPI {
 
         let specificPrompt = '';
     switch(parseInt(formData.pageType)) {
-        case PAGE_TYPES.HEBERGEMENT:
+        case PAGE_TYPES.TYPE_SEUL:
             specificPrompt = this.getHebergementPrompt(formData);
             break;
-        case PAGE_TYPES.SEJOUR:
+        case PAGE_TYPES.TYPE_DESTINATION:
+            specificPrompt = this.getHebergementPrompt(formData);
+            break;
+        case PAGE_TYPES.TYPE_THEMATIQUE:
+            specificPrompt = this.getTypeThematiquePrompt(formData);
+            break;
+        case PAGE_TYPES.THEMATIQUE_SEUL:
             specificPrompt = this.getSejourPrompt(formData);
             break;
-        case PAGE_TYPES.WEEKEND:
+        case PAGE_TYPES.THEMATIQUE_DESTINATION:
+            specificPrompt = this.getSejourPrompt(formData);
+            break;
+        case PAGE_TYPES.WEEKEND_THEMATIQUE:
+            specificPrompt = this.getWeekendThematiquePrompt(formData);
+            break;
+        case PAGE_TYPES.WEEKEND_DESTINATION:
             specificPrompt = this.getWeekendPrompt(formData);
             break;
-        case PAGE_TYPES.DESTINATION:
+        case PAGE_TYPES.DESTINATION_SEULE:
             specificPrompt = this.getDestinationPrompt(formData);
             break;
         default:
-            console.error('Type de page non reconnu:', formData.pageType);
-        }
+            console.error("Type de page non reconnu:", formData.pageType);
+            return null;
+    }
 
         return basePrompt + specificPrompt;
     }
@@ -110,6 +123,23 @@ Incluez 4-5 références naturelles aux types d'hébergements locaux et activit�
 Conclusion: Planifiez votre séjour en ${formData.destination} avec Hortense
 Incluez 4-5 références naturelles aux types d'hébergements disponibles et séjours populaires`;
     }
+
+    static getTypeThematiquePrompt(formData) {
+    return `Structure du texte pour type + thématique :
+1. Découvrez les avantages du ${formData.specificType} combiné avec un séjour ${formData.specificTypeSelect}
+2. Pourquoi choisir un ${formData.specificType} pour un séjour ${formData.specificTypeSelect} ?
+3. Expériences uniques en ${formData.specificType} lors d'un séjour ${formData.specificTypeSelect}
+4. Réservez dès maintenant votre ${formData.specificType} pour un séjour ${formData.specificTypeSelect}`;
+}
+
+    static getWeekendThematiquePrompt(formData) {
+    return `Structure du texte pour week-end + thématique :
+1. Passez un week-end parfait sous le signe de ${formData.specificTypeSelect}
+2. Meilleurs endroits pour un week-end ${formData.specificTypeSelect}
+3. Activités à faire lors d’un week-end ${formData.specificTypeSelect}
+4. Réservez votre week-end ${formData.specificTypeSelect} dès maintenant`;
+}
+
 }
 
 export { GPTAPI };
