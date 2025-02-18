@@ -55,11 +55,25 @@ class UIManager {
             break;
 
         case PAGE_TYPES.TYPE_DESTINATION:
-            this.specificTypeGroup.style.display = 'block';
+        case PAGE_TYPES.THEMATIQUE_DESTINATION:
+        case PAGE_TYPES.WEEKEND_DESTINATION:
+        case PAGE_TYPES.DESTINATION_SEULE:
+            this.specificTypeGroup.style.display = selectedType === PAGE_TYPES.TYPE_DESTINATION ? 'block' : 'none';
             this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
             this.geoScaleGroup.style.display = 'block';
             this.destinationGroup.style.display = 'block';
             this.destinationSelect.required = true;
+
+            // Vérifier si l'utilisateur a sélectionné "ville" comme échelle géographique
+            if (this.geoScaleSelect.value === 'ville') {
+                this.destinationSelect.style.display = 'none';
+                this.villeInput.style.display = 'block';
+                this.villeInput.required = true;
+            } else {
+                this.destinationSelect.style.display = 'block';
+                this.villeInput.style.display = 'none';
+                this.villeInput.required = false;
+            }
             break;
 
         case PAGE_TYPES.TYPE_THEMATIQUE:
@@ -70,33 +84,9 @@ class UIManager {
             break;
 
         case PAGE_TYPES.THEMATIQUE_SEUL:
-            this.specificThematiqueGroup.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            break;
-
-        case PAGE_TYPES.THEMATIQUE_DESTINATION:
-            this.specificThematiqueGroup.style.display = 'block';
-            this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            this.geoScaleGroup.style.display = 'block';
-            this.destinationGroup.style.display = 'block';
-            this.destinationSelect.required = true;
-            break;
-
         case PAGE_TYPES.WEEKEND_THEMATIQUE:
             this.specificThematiqueGroup.style.display = 'block';
             this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
-            break;
-
-        case PAGE_TYPES.WEEKEND_DESTINATION:
-            this.geoScaleGroup.style.display = 'block';
-            this.destinationGroup.style.display = 'block';
-            this.destinationSelect.required = true;
-            break;
-
-        case PAGE_TYPES.DESTINATION_SEULE:
-            this.geoScaleGroup.style.display = 'block';
-            this.destinationGroup.style.display = 'block';
-            this.destinationSelect.required = true;
             break;
 
         default:
@@ -106,32 +96,43 @@ class UIManager {
 }
 
 
+
    handleGeoScaleChange() {
-       console.log('Changement d\'échelle géographique'); // Debug
-       const selectedScale = this.geoScaleSelect.value;
-       console.log('Échelle sélectionnée:', selectedScale); // Debug
+    console.log('Changement d\'échelle géographique'); // Debug
+    const selectedScale = this.geoScaleSelect.value;
+    console.log('Échelle sélectionnée:', selectedScale); // Debug
 
-       if (selectedScale === 'ville') {
-           this.destinationGroup.style.display = 'none';
-           this.villeInput.style.display = 'block';
-           this.villeInput.required = true;
-           this.destinationSelect.required = false;
-       } else {
-           this.destinationGroup.style.display = 'block';
-           this.villeInput.style.display = 'none';
-           this.villeInput.required = false;
-           this.destinationSelect.required = true;
+    // Réinitialiser les champs
+    this.destinationSelect.innerHTML = '<option value="" disabled selected>Sélectionnez une destination</option>';
+    this.villeInput.value = ''; 
+    this.destinationGroup.style.display = 'block';
+    this.villeInput.style.display = 'none';
+    
+    if (selectedScale === 'ville') {
+        console.log('Mode ville activé'); // Debug
+        this.destinationSelect.style.display = 'none';
+        this.villeInput.style.display = 'block';
+        this.villeInput.required = true;
+        this.destinationSelect.required = false;
+    } else {
+        console.log('Mode région/département activé'); // Debug
+        this.destinationSelect.style.display = 'block';
+        this.villeInput.style.display = 'none';
+        this.villeInput.required = false;
+        this.destinationSelect.required = true;
 
-           this.destinationSelect.innerHTML = '<option value="">Sélectionnez une destination</option>';
-           const locations = selectedScale === 'region' ? LOCATIONS.regions : LOCATIONS.departements;
+        const locations = selectedScale === 'region' ? LOCATIONS.regions : LOCATIONS.departements;
+        console.log('Locations chargées:', locations); // Debug
 
-           locations.forEach(location => {
-               const option = document.createElement('option');
-               option.value = location;
-               option.textContent = location;
-               this.destinationSelect.appendChild(option);
-           });
-       }
+        locations.forEach(location => {
+            const option = document.createElement('option');
+            option.value = location;
+            option.textContent = location;
+            this.destinationSelect.appendChild(option);
+        });
+    }
+}
+
    }
 
    loadSpecificTypes(types, selectElement) {

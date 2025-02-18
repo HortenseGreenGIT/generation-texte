@@ -56,15 +56,15 @@
            </div>
 
            <!-- Destination -->
-           <div class="form-group" id="destinationGroup" style="display: none;">
-               <label for="destination">Destination</label>
-               <div id="destinationContainer">
-                   <select id="destination">
-                       <option value="">Sélectionnez une destination</option>
-                   </select>
-                   <input type="text" id="villeInput" placeholder="Entrez le nom de la ville" style="display: none;">
-               </div>
-           </div>
+            <div class="form-group" id="destinationGroup">
+                <label for="destination">Destination</label>
+                <div id="destinationContainer">
+                    <select id="destination" name="destination" required>
+                        <option value="" disabled selected>Sélectionnez une destination</option>
+                    </select>
+                    <input type="text" id="villeInput" name="ville" placeholder="Entrez le nom de la ville" style="display: none;">
+                </div>
+            </div>
 
            <!-- Requête SEO -->
            <div class="form-group">
