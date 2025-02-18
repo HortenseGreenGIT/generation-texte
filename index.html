@@ -28,26 +28,26 @@
                 </select>
            </div>
 
-           <!-- Type spécifique (hébergement/séjour) -->
+           <!-- Type d'hébergement -->
            <div class="form-group" id="specificTypeGroup" style="display: none;">
-               <label for="specificType">Type spécifique</label>
-               <select id="specificType" name="specificType" required>
-                   <option value="">Chargement...</option>
+               <label for="specificType">Type d'hébergement</label>
+               <select id="specificType" name="specificType">
+                   <option value="">Sélectionnez un type d'hébergement</option>
                </select>
            </div>
 
-            <div class="form-group" id="specificThematiqueGroup" style="display: none;">
+           <!-- Type de thématique -->
+           <div class="form-group" id="specificThematiqueGroup" style="display: none;">
                 <label for="specificThematique">Thématique</label>
                 <select id="specificThematique" name="specificThematique">
                     <option value="">Sélectionnez une thématique</option>
                 </select>
-                </div>
-
+           </div>
 
            <!-- Échelle géographique -->
-           <div class="form-group">
+           <div class="form-group" id="geoScaleGroup" style="display: none;">
                <label for="geoScale">Échelle géographique</label>
-               <select id="geoScale" name="geoScale" required>
+               <select id="geoScale" name="geoScale">
                    <option value="">Sélectionnez une échelle</option>
                    <option value="region">Région</option>
                    <option value="departement">Département</option>
@@ -56,11 +56,11 @@
            </div>
 
            <!-- Destination -->
-           <div class="form-group">
+           <div class="form-group" id="destinationGroup" style="display: none;">
                <label for="destination">Destination</label>
                <div id="destinationContainer">
-                   <select id="destination" required>
-                       <option value="">Sélectionnez d'abord une échelle géographique</option>
+                   <select id="destination">
+                       <option value="">Sélectionnez une destination</option>
                    </select>
                    <input type="text" id="villeInput" placeholder="Entrez le nom de la ville" style="display: none;">
                </div>
