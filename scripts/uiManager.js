@@ -55,14 +55,19 @@ class UIManager {
             break;
 
         case PAGE_TYPES.TYPE_DESTINATION:
-        case PAGE_TYPES.THEMATIQUE_DESTINATION:
-        case PAGE_TYPES.WEEKEND_DESTINATION:
-        case PAGE_TYPES.DESTINATION_SEULE:
-            this.specificTypeGroup.style.display = selectedType === PAGE_TYPES.TYPE_DESTINATION ? 'block' : 'none';
-            this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
-            this.geoScaleGroup.style.display = 'block';
-            this.destinationGroup.style.display = 'block';
-            this.destinationSelect.required = true;
+    this.specificTypeGroup.style.display = 'block';
+    this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+    break;
+
+case PAGE_TYPES.THEMATIQUE_DESTINATION:
+    this.specificThematiqueGroup.style.display = 'block';
+    this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+    break;
+
+case PAGE_TYPES.WEEKEND_DESTINATION:
+case PAGE_TYPES.DESTINATION_SEULE:
+    break;
+
 
             // Vérifier si l'utilisateur a sélectionné "ville" comme échelle géographique
             if (this.geoScaleSelect.value === 'ville') {
@@ -100,21 +105,25 @@ class UIManager {
    handleGeoScaleChange() {
     console.log('Changement d\'échelle géographique'); // Debug
     const selectedScale = this.geoScaleSelect.value;
-    console.log('Échelle sélectionnée:', selectedScale); // Debug
 
-    // Réinitialiser les champs
+    // Si la destination n'est pas visible, on ne modifie rien
+    if (this.destinationGroup.style.display === 'none') {
+        return;
+    }
+
     this.destinationSelect.innerHTML = '<option value="" disabled selected>Sélectionnez une destination</option>';
     this.villeInput.value = ''; 
-    this.destinationGroup.style.display = 'block';
+    this.destinationSelect.style.display = 'block';
     this.villeInput.style.display = 'none';
-    
+
     if (selectedScale === 'ville') {
         console.log('Mode ville activé'); // Debug
         this.destinationSelect.style.display = 'none';
         this.villeInput.style.display = 'block';
         this.villeInput.required = true;
         this.destinationSelect.required = false;
-    } else {
+    }
+    else {
         console.log('Mode région/département activé'); // Debug
         this.destinationSelect.style.display = 'block';
         this.villeInput.style.display = 'none';
@@ -122,7 +131,6 @@ class UIManager {
         this.destinationSelect.required = true;
 
         const locations = selectedScale === 'region' ? LOCATIONS.regions : LOCATIONS.departements;
-        console.log('Locations chargées:', locations); // Debug
 
         locations.forEach(location => {
             const option = document.createElement('option');
@@ -132,9 +140,6 @@ class UIManager {
         });
     }
 }
-
-   }
-
    loadSpecificTypes(types, selectElement) {
        selectElement.innerHTML = '<option value="">Sélectionnez une option</option>';
        types.forEach(type => {
