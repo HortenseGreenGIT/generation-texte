@@ -155,9 +155,20 @@ case PAGE_TYPES.DESTINATION_SEULE:
        this.charCount.textContent = `${count}/${MAX_SEO_CHARS}`;
    }
 
+async generateText(formData) {
+    console.log('Génération du texte'); // Debug
+    const prompt = GPTAPI.generatePrompt(formData);
+    return await GPTAPI.generateText(prompt);
+}
+
+showError(message) {
+    alert(message);
+}
+
    async handleSubmit(e) {
     e.preventDefault();
     console.log('Soumission du formulaire');
+    console.log("Vérification de `this` dans handleSubmit:", this);
 
     try {
         this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
@@ -212,11 +223,19 @@ case PAGE_TYPES.DESTINATION_SEULE:
 
         console.log('Données du formulaire:', formData);
 
-        const generatedText = await this.generateText(formData);
+        const generatedText = await this.generateText?.(formData);
+        if (!generatedText) {
+        console.error("Erreur : Texte généré invalide");
+        return;
+        }
         this.showResult(generatedText);
     } catch (error) {
         console.error('Erreur lors de la génération:', error);
-        this.showError('Erreur lors de la génération du texte');
+        if (typeof this.showError === "function") {
+            this.showError('Erreur lors de la génération du texte');
+        } else {
+            console.error("showError n'est pas une fonction valide.");
+        }
     } finally {
         this.form.querySelectorAll('input, select, button').forEach(el => el.disabled = false);
     }
