@@ -161,6 +161,12 @@ async generateText(formData) {
     return await GPTAPI.generateText(prompt);
 }
 
+showResult(text) {
+    this.generatedText.textContent = text;
+    this.resultArea.style.display = 'block';
+    this.resultArea.scrollIntoView({ behavior: 'smooth' });
+}
+
 showError(message) {
     alert(message);
 }
