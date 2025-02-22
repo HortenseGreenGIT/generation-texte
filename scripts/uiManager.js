@@ -55,7 +55,21 @@ class UIManager {
             break;
 
         case PAGE_TYPES.TYPE_DESTINATION:
-        case PAGE_TYPES.THEMATIQUE_DESTINATION:
+    this.specificTypeGroup.style.display = 'block'; // Ajout pour afficher le type d’hébergement
+    this.loadSpecificTypes(HEBERGEMENT_TYPES, this.specificTypeSelect);
+    this.geoScaleGroup.style.display = 'block';
+    this.destinationGroup.style.display = 'block';
+    this.destinationSelect.required = true;
+    break;
+
+case PAGE_TYPES.THEMATIQUE_DESTINATION:
+    this.specificThematiqueGroup.style.display = 'block'; // Ajout pour afficher la thématique
+    this.loadSpecificTypes(SEJOUR_TYPES, this.specificThematiqueSelect);
+    this.geoScaleGroup.style.display = 'block';
+    this.destinationGroup.style.display = 'block';
+    this.destinationSelect.required = true;
+    break;
+
         case PAGE_TYPES.WEEKEND_DESTINATION:
         case PAGE_TYPES.DESTINATION_SEULE:
             this.geoScaleGroup.style.display = 'block';
