@@ -3,6 +3,7 @@ import { GPTAPI } from './apiHandlers.js';
 import uiManager from './uiManager.js';
 import Utils from './utils.js';
 
+
 // Fonction d'initialisation principale
 async function initializeApp() {
     try {
@@ -28,13 +29,13 @@ function addExtraFeatures() {
     });
     document.getElementById('result').appendChild(copyButton);
 
-    // Ajouter un bouton de sauvegarde en .docx
+    // Ajouter un bouton de sauvegarde
 const saveButton = document.createElement('button');
-saveButton.textContent = 'Sauvegarder en .docx';
+saveButton.textContent = 'Sauvegarder en fichier';
 saveButton.className = 'save-button';
-saveButton.addEventListener('click', async () => {
+saveButton.addEventListener('click', () => {
     const generatedText = document.getElementById('generatedText').textContent;
-    await Utils.saveAsFile(generatedText, 'texte-genere.docx');
+    Utils.saveAsFile(generatedText);
 });
 document.getElementById('result').appendChild(saveButton);
 
