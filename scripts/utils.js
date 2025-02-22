@@ -79,17 +79,17 @@ class Utils {
    }
 
    // Fonction pour sauvegarder le texte en fichier
-   saveAsFile: (textContent) => {
-        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'texte_genere.txt';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-    }
+   static saveAsFile(textContent) {
+    const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'texte_genere.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+}
 }
 
 export default Utils;
