@@ -1,5 +1,6 @@
 // utils.js
 // À placer dans le dossier scripts
+import { Document, Packer, Paragraph } from "docx";
 
 class Utils {
    // Fonction pour formater le texte
@@ -79,17 +80,22 @@ class Utils {
    }
 
    // Fonction pour sauvegarder le texte en fichier
-   static saveAsFile(text, filename = 'generated-text.txt') {
-       const blob = new Blob([text], { type: 'text/plain' });
-       const url = window.URL.createObjectURL(blob);
-       const a = document.createElement('a');
-       
-       a.href = url;
-       a.download = filename;
-       a.click();
-       
-       window.URL.revokeObjectURL(url);
-   }
+   static async saveAsFile(text, filename = 'generated-text.docx') {
+    const doc = new Document({
+        sections: [{
+            properties: {},
+            children: [new Paragraph(text)],
+        }],
+    });
+
+    const blob = await Packer.toBlob(doc);
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
 }
 
 export default Utils;

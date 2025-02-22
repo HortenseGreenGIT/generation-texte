@@ -28,15 +28,16 @@ function addExtraFeatures() {
     });
     document.getElementById('result').appendChild(copyButton);
 
-    // Ajouter un bouton de sauvegarde
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Sauvegarder en fichier';
-    saveButton.className = 'save-button';
-    saveButton.addEventListener('click', () => {
-        const generatedText = document.getElementById('generatedText').textContent;
-        Utils.saveAsFile(generatedText);
-    });
-    document.getElementById('result').appendChild(saveButton);
+    // Ajouter un bouton de sauvegarde en .docx
+const saveButton = document.createElement('button');
+saveButton.textContent = 'Sauvegarder en .docx';
+saveButton.className = 'save-button';
+saveButton.addEventListener('click', async () => {
+    const generatedText = document.getElementById('generatedText').textContent;
+    await Utils.saveAsFile(generatedText, 'texte-genere.docx');
+});
+document.getElementById('result').appendChild(saveButton);
+
 }
 
 // Gestionnaire d'erreurs global
