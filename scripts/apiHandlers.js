@@ -134,8 +134,8 @@ Incluez 4-5 références naturelles aux types d'hébergements disponibles et sé
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
-    Ecrire un titre : Que faire lors d'un week-end ${formData.specificThematiqueGroup}
-    Pour chaque partie écrire le titre de la partie en mettant un espace avec son texte (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Le titre peut être légèrement adapté pour convenir à une tournure de phrase naturelle.
+    Ecrire un titre : Que faire lors d'un week-end ${formData.specificThematiqueGroup} ?
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Le titre peut être légèrement adapté pour convenir à une tournure de phrase naturelle. Le titre et la partie correspondante doivent avoir une ligne vide d'écart.
 1. Choisir un hébergement ${formData.specificThematiqueGroup}
 2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.specificThematiqueGroup}}
 3. Découvrir des lieux {ajouter ici une tournure de phrase naturelle en accord avec ${formData.specificThematiqueGroup}}
