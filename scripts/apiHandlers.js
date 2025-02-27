@@ -90,7 +90,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getThematiqueSeulPrompt(formData) {
         return `Structure du texte pour thématique de séjour :
-    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN ${formData.thematique}"
+    IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN ${formData.thematique}"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
     IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
 
@@ -104,7 +104,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getWeekendDestinationPrompt(formData) {
         return `Structure du texte pour week-end + destination :
-    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVRIR ${formData.destination} LE TEMPS D'UN WEEK-END INOUBLIABLE ?"
+    IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVRIR ${formData.destination} LE TEMPS D'UN WEEK-END INOUBLIABLE ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
     IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
 
@@ -119,7 +119,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getDestinationSeulPrompt(formData) {
         return `Structure du texte pour destination seule :
-    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVREZ ${formData.destination}, {ajouter en majuscule une tournure de phrase personnalisée par destination, inspirée de ${formData.destination}"
+    IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVREZ ${formData.destination}, {ajouter en majuscule une tournure de phrase personnalisée par destination, inspirée de ${formData.destination}"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
     IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
 
@@ -140,7 +140,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
-    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN WEEK-END ${formData.thematique} ?"
+    IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN WEEK-END ${formData.thematique} ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
     IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
 
@@ -155,7 +155,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getThematiqueDestinationPrompt(formData) {
         return `Structure du texte pour thématique + destination :
-    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "POURQUOI CHOISIR UN ${formData.thematique} EN ${formData.destination}?"
+    IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "POURQUOI CHOISIR UN ${formData.thematique} EN ${formData.destination}?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
     IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés.
 
