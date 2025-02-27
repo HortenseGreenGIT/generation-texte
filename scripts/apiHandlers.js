@@ -126,16 +126,14 @@ Incluez 4-5 références naturelles aux types d'hébergements disponibles et sé
 
     static getTypeThematiquePrompt(formData) {
     return `Structure du texte pour type + thématique :
-1. Découvrez les avantages du ${formData.specificType} combiné avec un séjour ${formData.specificTypeSelect}
-2. Pourquoi choisir un ${formData.specificType} pour un séjour ${formData.specificTypeSelect} ?
-3. Expériences uniques en ${formData.specificType} lors d'un séjour ${formData.specificTypeSelect}
-4. Réservez dès maintenant votre ${formData.specificType} pour un séjour ${formData.specificTypeSelect}`;
+LE PROMPT DE ${formData.specificType} ${formData.thematique} SERA BIENTOT DISPONIBLE.\n
+EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 }
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
     Ecrire un titre : Que faire lors d'un week-end ${formData.thematique} ?
-    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Le titre peut être légèrement adapté pour convenir à une tournure de phrase naturelle. Le titre et la partie correspondante doivent avoir une ligne vide d'écart.
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Le titre peut être légèrement adapté pour convenir à une tournure de phrase naturelle. Le titre et la partie correspondante doivent avoir une ligne vide d'écart. Le titre doit toujours avoir son numéro correspondant devant lui.
 1. Choisir un hébergement ${formData.thematique}
 2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
 3. Découvrir des lieux {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
