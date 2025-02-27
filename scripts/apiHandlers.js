@@ -134,10 +134,17 @@ Incluez 4-5 références naturelles aux types d'hébergements disponibles et sé
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
-1. Passez un week-end parfait sous le signe de ${formData.specificTypeSelect}
-2. Meilleurs endroits pour un week-end ${formData.specificTypeSelect}
-3. Activités à faire lors d’un week-end ${formData.specificTypeSelect}
-4. Réservez votre week-end ${formData.specificTypeSelect} dès maintenant`;
+    Ecrire un titre : Que faire lors d'un week-end ${formData.specificTypeSelect}
+    Pour chaque partie écrire le titre de la partie (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Le titre peut être légèrement adapté pour convenir à une tournure de phrase naturelle.
+1. Choisir un hébergement ${formData.specificTypeSelect} 
+2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.specificTypeSelect}}
+3. Découvrir des lieux {ajouter ici une tournure de phrase naturelle en accord avec ${formData.specificTypeSelect}}
+4. Ajouter une touche d'originalité
+5. Voyager de manière responsable
+6. Planifier un moment de détente
+Organisez votre week-end ${formData.specificTypeSelect} avec Hortense
+
+`;
 }
 
 }
