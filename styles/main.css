@@ -145,3 +145,9 @@ button.copy-button:hover, button.save-button:hover {
         padding: 12px 20px;
     }
 }
+
+.logo {
+    display: block;
+    max-width: 150px; /* Ajuste la taille du logo */
+    margin: 0 auto 20px; /* Centre l'image et ajoute un espace sous le logo */
+}
