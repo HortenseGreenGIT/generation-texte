@@ -86,7 +86,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
         return `Structure du texte pour type d'hébergement seul :
     IMPORTANT : Écrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "Pourquoi choisir un ${formData.specificType} pour vos prochaines vacances ?"
     Pour chaque partie, écrire le titre de la partie sur une ligne distincte, suivi d'un saut de ligne avant d'écrire le texte correspondant.
-    IMPORTANT : Incluez 4-5 références naturelles aux destinations recommandées et aux thématiques de séjour adaptées.
+    IMPORTANT : Incluez 4-5 références naturelles aux destinations recommandées et aux thématiques de séjour adaptées. Inclure ${formData.specificType} de manière humaine, naturelle et fluide. 
 
 1. Qu'est-ce qu'un ${formData.specificType} et pourquoi le choisir ?
 2. Les avantages d’un séjour en ${formData.specificType}
