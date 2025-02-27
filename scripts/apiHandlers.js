@@ -92,7 +92,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
         return `Structure du texte pour thématique de séjour :
     IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN ${formData.thematique}"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
-    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées. Intègre ${formData.thematique} de manière humaine, naturelle, en adaptant la casse des lettres.
 
 1. Bien choisir sa destination pour un ${formData.thematique}
 2. Séjourner dans un hébergement {mettre un adjectif en lien avec ${formData.thematique}}
@@ -106,7 +106,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
         return `Structure du texte pour week-end + destination :
     IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVRIR ${formData.destination} LE TEMPS D'UN WEEK-END INOUBLIABLE ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
-    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées. Intègre ${formData.destination} de manière humaine, naturelle, en adaptant la casse des lettres.
 
 1. Séjourner dans un hébergement de charme
 2. Explorez des paysages époustouflants
@@ -121,7 +121,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
         return `Structure du texte pour destination seule :
     IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVREZ ${formData.destination}, {ajouter en majuscule une tournure de phrase personnalisée par destination, inspirée de ${formData.destination}"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
-    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées. Intègre ${formData.destination} de manière humaine, naturelle, en adaptant la casse des lettres.
 
 1. Découvrir ${formData.destination} : Guide complet
 2. Où séjourner à ${formData.destination} ?
@@ -142,7 +142,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
     return `Structure du texte pour week-end + thématique :
     IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN WEEK-END ${formData.thematique} ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
-    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées. Intègre ${formData.thematique} de manière humaine, naturelle, en adaptant la casse des lettres.
 
 1. Choisir un hébergement ${formData.thematique}
 2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
@@ -157,7 +157,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
         return `Structure du texte pour thématique + destination :
     IMPORTANT : Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "POURQUOI CHOISIR UN ${formData.thematique} EN ${formData.destination}?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
-    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés. Intègre ${formData.thematique} et ${formData.destination} de manière humaine, naturelle, en adaptant la casse des lettres.
 
 1. Les incontournables pour un ${formData.thematique} en ${formData.destination}
 2. Des activités à vivre pour un ${formData.thematique} inoubliable en ${formData.destination}
