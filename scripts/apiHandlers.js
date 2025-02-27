@@ -132,7 +132,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
-    Ecrire un titre : Que faire lors d'un week-end ${formData.thematique} ? Ce titre est à adapter pour convenir à un titre écrit par un humain, de manière naturelle.
+    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN WEEK-END ${formData.thematique} ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. Les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart. Les titres doivent toujours avoir leurs numéros correspondants devant eux.
 1. Choisir un hébergement ${formData.thematique}
 2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
@@ -140,7 +140,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 4. Ajouter une touche d'originalité
 5. Voyager de manière responsable
 6. Planifier un moment de détente
-Organisez votre week-end ${formData.thematique} avec Hortense`;
+7. Organisez votre week-end ${formData.thematique} avec Hortense`;
 }
 
 }
