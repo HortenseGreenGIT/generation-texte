@@ -57,7 +57,7 @@ class GPTAPI {
             specificPrompt = this.getThematiqueSeulPrompt(formData);
             break;
         case PAGE_TYPES.THEMATIQUE_DESTINATION:
-            specificPrompt = this.getPardefaultPrompt(formData);
+            specificPrompt = this.getThematiqueDestinationPrompt(formData);
             break;
         case PAGE_TYPES.WEEKEND_THEMATIQUE:
             specificPrompt = this.getWeekendThematiquePrompt(formData);
@@ -81,7 +81,7 @@ class GPTAPI {
 LE PROMPT SERA BIENTOT DISPONIBLE.\n
 EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
     }
-    
+
     static getHebergementSeulPrompt(formData) {
         return `Structure du texte pour type + thématique :
 LE PROMPT DE ${formData.specificType} SERA BIENTOT DISPONIBLE.\n
@@ -153,6 +153,19 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 7. Organisez votre week-end ${formData.thematique} avec Hortense`;
 }
 
+    static getThematiqueDestinationPrompt(formData) {
+        return `Structure du texte pour thématique + destination :
+    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "POURQUOI CHOISIR UN ${formData.thematique} EN ${formData.destination}?"
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés.
+
+1. Les incontournables pour un ${formData.thematique} en ${formData.destination}
+2. Des activités à vivre pour un ${formData.thematique} inoubliable en ${formData.destination}
+3. Quand partir pour un ${formData.thematique} en ${formData.destination}
+4. Où séjourner pour un ${formData.thematique} en ${formData.destination}
+5. Un ${formData.thematique} en ${formData.destination} pour des vacances ressourçantes
+6. Organisez votre ${formData.thematique} en ${formData.destination} avec Hortense !`;
+    }
 }
 
 export { GPTAPI };
