@@ -45,28 +45,28 @@ class GPTAPI {
         let specificPrompt = '';
     switch(parseInt(formData.pageType)) {
         case PAGE_TYPES.TYPE_SEUL:
-            specificPrompt = this.getHebergementPrompt(formData);
+            specificPrompt = this.getHebergementSeulPrompt(formData);
             break;
         case PAGE_TYPES.TYPE_DESTINATION:
-            specificPrompt = this.getHebergementPrompt(formData);
+            specificPrompt = this.getPardefaultPrompt(formData);
             break;
         case PAGE_TYPES.TYPE_THEMATIQUE:
             specificPrompt = this.getTypeThematiquePrompt(formData);
             break;
         case PAGE_TYPES.THEMATIQUE_SEUL:
-            specificPrompt = this.getSejourPrompt(formData);
+            specificPrompt = this.getThematiqueSeulPrompt(formData);
             break;
         case PAGE_TYPES.THEMATIQUE_DESTINATION:
-            specificPrompt = this.getSejourPrompt(formData);
+            specificPrompt = this.getPardefaultPrompt(formData);
             break;
         case PAGE_TYPES.WEEKEND_THEMATIQUE:
             specificPrompt = this.getWeekendThematiquePrompt(formData);
             break;
         case PAGE_TYPES.WEEKEND_DESTINATION:
-            specificPrompt = this.getWeekendPrompt(formData);
+            specificPrompt = this.getWeekendDestinationPrompt(formData);
             break;
         case PAGE_TYPES.DESTINATION_SEULE:
-            specificPrompt = this.getDestinationPrompt(formData);
+            specificPrompt = this.getDestinationSeulPrompt(formData);
             break;
         default:
             console.error("Type de page non reconnu:", formData.pageType);
@@ -76,52 +76,60 @@ class GPTAPI {
         return basePrompt + specificPrompt;
     }
 
-    static getHebergementPrompt(formData) {
-        return `Structure du texte pour hébergement :
-1. Comment choisir votre ${formData.specificType} en ${formData.destination} ?
-2. Avantages de choisir un ${formData.specificType}
-3. Profitez de la tranquillité de ${formData.destination} dans votre ${formData.specificType}
-4. À la découverte des ${formData.specificType}s authentiques de ${formData.destination}
-5. Activités et expériences autour de votre ${formData.specificType}
-6. Conseils pour réserver votre ${formData.specificType} idéal
-Conclusion: Réservez votre ${formData.specificType} en ${formData.destination} avec Hortense
-Incluez 4-5 références naturelles aux types de séjours possibles et destinations populaires`;
+    static getPardefaultPrompt(formData) {
+        return `Structure du texte pour type + thématique :
+LE PROMPT SERA BIENTOT DISPONIBLE.\n
+EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
+    }
+    
+    static getHebergementSeulPrompt(formData) {
+        return `Structure du texte pour type + thématique :
+LE PROMPT DE ${formData.specificType} SERA BIENTOT DISPONIBLE.\n
+EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
     }
 
-    static getSejourPrompt(formData) {
-        return `Structure du texte pour séjour :
-1. Que faire lors d'un ${formData.specificType} ?
-2. Bien choisir sa destination pour un ${formData.specificType}
-3. Séjourner dans un hébergement typique
-4. Découvrez les activités pour un ${formData.specificType}
-5. Voyager de manière responsable pendant votre ${formData.specificType}
-6. Détendez-vous et profitez
-Conclusion: Organisez votre ${formData.specificType} avec Hortense
-Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées`;
+    static getThematiqueSeulPrompt(formData) {
+        return `Structure du texte pour thématique de séjour :
+    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN ${formData.thematique}"
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
+
+1. Bien choisir sa destination pour un ${formData.thematique}
+2. Séjourner dans un hébergement {mettre un adjectif en lien avec ${formData.thematique}}
+3. Découvrez les activités pour un ${formData.thematique}
+4. Voyager de manière responsable pendant votre ${formData.thematique}
+5. Détendez-vous et profitez
+6. Organisez votre ${formData.thematique} avec Hortense`;
     }
 
-    static getWeekendPrompt(formData) {
-        return `Structure du texte pour week-end :
-1. Que faire lors d'un week-end à ${formData.destination} ?
-2. Séjourner dans un hébergement typique
-3. Explorer des paysages époustouflants
-4. Découvrir le patrimoine historique
-5. Déguster les saveurs locales
-6. Partager des moments uniques
-Conclusion: Un week-end à ${formData.destination} avec Hortense
-Incluez 4-5 références naturelles aux types d'hébergements locaux et activités thématiques possibles`;
+    static getWeekendDestinationPrompt(formData) {
+        return `Structure du texte pour week-end + destination :
+    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVRIR ${formData.destination} LE TEMPS D'UN WEEK-END INOUBLIABLE ?"
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
+
+1. Séjourner dans un hébergement de charme
+2. Explorez des paysages époustouflants
+3. S'imprégner du patrimoine historique
+4. Déguster les saveurs de ${formData.destination}
+5. Vivre des expériences uniques
+6. Adoptez un tourisme responsable
+7. Organisez votre week-end en ${formData.destination} avec Hortense`;
     }
 
-    static getDestinationPrompt(formData) {
-        return `Structure du texte pour destination :
+    static getDestinationSeulPrompt(formData) {
+        return `Structure du texte pour destination seule :
+    Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "DECOUVREZ ${formData.destination}, {ajouter en majuscule une tournure de phrase personnalisée par destination, inspirée de ${formData.destination}"
+    Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et thématiques recommandées.
+
 1. Découvrir ${formData.destination} : Guide complet
 2. Où séjourner à ${formData.destination} ?
 3. Les incontournables de ${formData.destination}
 4. Activités et expériences uniques en ${formData.destination}
 5. Saveurs et traditions de ${formData.destination}
 6. Comment explorer ${formData.destination} de manière responsable ?
-Conclusion: Planifiez votre séjour en ${formData.destination} avec Hortense
-Incluez 4-5 références naturelles aux types d'hébergements disponibles et séjours populaires`;
+Conclusion: Planifiez votre séjour en ${formData.destination} avec Hortense`;
     }
 
     static getTypeThematiquePrompt(formData) {
@@ -134,6 +142,8 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
     return `Structure du texte pour week-end + thématique :
     Ecrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "QUE FAIRE LORS D'UN WEEK-END ${formData.thematique} ?"
     Pour chaque partie écrire le titre (en respectant les modèles ci-dessous) puis rédiger un texte correspondant. Les titres doivent être adapté pour convenir à une tournure de phrase naturelle. IMPORTANT : les titres et leurs parties correspondantes doivent avoir une ligne vide d'écart!! Les titres doivent toujours avoir leurs numéros correspondants devant eux.
+    IMPORTANT : Incluez 4-5 références naturelles aux types d'hébergements adaptés et destinations recommandées.
+
 1. Choisir un hébergement ${formData.thematique}
 2. Profitez d'expériences {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
 3. Découvrir des lieux {ajouter ici une tournure de phrase naturelle en accord avec ${formData.thematique}}
