@@ -45,10 +45,10 @@ class GPTAPI {
         let specificPrompt = '';
     switch(parseInt(formData.pageType)) {
         case PAGE_TYPES.TYPE_SEUL:
-            specificPrompt = this.getHebergementSeulPrompt(formData);
+            specificPrompt = this.getTypeSeulPrompt(formData);
             break;
         case PAGE_TYPES.TYPE_DESTINATION:
-            specificPrompt = this.getPardefaultPrompt(formData);
+            specificPrompt = this.getTypeDestinationPrompt(formData);
             break;
         case PAGE_TYPES.TYPE_THEMATIQUE:
             specificPrompt = this.getTypeThematiquePrompt(formData);
@@ -82,11 +82,33 @@ LE PROMPT SERA BIENTOT DISPONIBLE.\n
 EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
     }
 
-    static getHebergementSeulPrompt(formData) {
-        return `Structure du texte pour type + thématique :
-LE PROMPT DE ${formData.specificType} SERA BIENTOT DISPONIBLE.\n
-EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
-    }
+    static getTypeSeulPrompt(formData) {
+        return `Structure du texte pour type d'hébergement seul :
+    IMPORTANT : Écrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "Pourquoi choisir un ${formData.specificType} pour vos prochaines vacances ?"
+    Pour chaque partie, écrire le titre de la partie sur une ligne distincte, suivi d'un saut de ligne avant d'écrire le texte correspondant.
+    IMPORTANT : Incluez 4-5 références naturelles aux destinations recommandées et aux thématiques de séjour adaptées.
+
+1. Qu'est-ce qu'un ${formData.specificType} et pourquoi le choisir ?
+2. Les avantages d’un séjour en ${formData.specificType}
+3. À qui s’adresse un séjour en ${formData.specificType} ?
+4. Les meilleures destinations pour séjourner en ${formData.specificType}
+5. Comment bien choisir votre ${formData.specificType} ?
+6. Organisez votre séjour en ${formData.specificType} avec Hortense`;
+}
+
+    static getTypeDestinationPrompt(formData) {
+        return `Structure du texte pour type d'hébergement + destination :
+    IMPORTANT : Écrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "Pourquoi séjourner dans un ${formData.specificType} en ${formData.destination} ?"
+    Pour chaque partie, écrire le titre de la partie sur une ligne distincte, suivi d'un saut de ligne avant d'écrire le texte correspondant.
+    IMPORTANT : Incluez 4-5 références naturelles aux thématiques de séjour adaptées et aux activités disponibles dans ${formData.destination}. Intègre ${formData.specificType} et ${formData.destination} de manière naturelle.
+
+1. Pourquoi choisir un ${formData.specificType} pour un séjour en ${formData.destination} ?
+2. Les avantages d’un ${formData.specificType} en ${formData.destination}
+3. Les meilleures expériences à vivre autour de votre ${formData.specificType} en ${formData.destination}
+4. Où trouver les plus beaux ${formData.specificType} en ${formData.destination} ?
+5. Comment bien préparer son séjour en ${formData.specificType} en ${formData.destination} ?
+6. Planifiez votre séjour en ${formData.specificType} en ${formData.destination} avec Hortense`;
+}
 
     static getThematiqueSeulPrompt(formData) {
         return `Structure du texte pour thématique de séjour :
@@ -133,10 +155,19 @@ Conclusion: Planifiez votre séjour en ${formData.destination} avec Hortense`;
     }
 
     static getTypeThematiquePrompt(formData) {
-    return `Structure du texte pour type + thématique :
-LE PROMPT DE ${formData.specificType} ${formData.thematique} SERA BIENTOT DISPONIBLE.\n
-EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
+    return `Structure du texte pour type d'hébergement + thématique :
+    IMPORTANT : Écrire un titre principal à adapter pour convenir à un titre écrit par un humain, de manière naturelle : "Pourquoi choisir un ${formData.specificType} pour un ${formData.thematique} ?"
+    Pour chaque partie, écrire le titre de la partie sur une ligne distincte, suivi d'un saut de ligne avant d'écrire le texte correspondant.
+    IMPORTANT : Incluez 4-5 références naturelles aux destinations adaptées et aux expériences en lien avec ${formData.thematique}. Intègre ${formData.specificType} et ${formData.thematique} de manière naturelle.
+
+1. Pourquoi choisir un ${formData.specificType} pour un ${formData.thematique} ?
+2. Les avantages d’un ${formData.specificType} pour un séjour ${formData.thematique}
+3. Les meilleures expériences ${formData.thematique} en ${formData.specificType}
+4. Où trouver les plus beaux ${formData.specificType} pour un ${formData.thematique} ?
+5. Comment bien organiser son séjour ${formData.thematique} en ${formData.specificType} ?
+6. Planifiez votre séjour ${formData.thematique} en ${formData.specificType} avec Hortense`;
 }
+
 
     static getWeekendThematiquePrompt(formData) {
     return `Structure du texte pour week-end + thématique :
