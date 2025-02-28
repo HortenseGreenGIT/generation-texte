@@ -91,7 +91,7 @@ EN ATTENDANT, ECRIRE "BIENTOT DISPONIBLE"`;
 1. Qu'est-ce qu'un ${formData.specificType} et pourquoi le choisir ?
 2. Les avantages d’un séjour en ${formData.specificType}
 3. À qui s’adresse un séjour en ${formData.specificType} ?
-4. Les meilleures destinations pour séjourner en ${formData.specificType}
+4. Les meilleures destinations pour séjourner en ${formData.specificType} {donner ici des idées de vrais noms de destinations en France, des noms de villes, de département ou de régions}
 5. Comment bien choisir votre ${formData.specificType} ?
 6. Organisez votre séjour en ${formData.specificType} avec Hortense`;
 }
